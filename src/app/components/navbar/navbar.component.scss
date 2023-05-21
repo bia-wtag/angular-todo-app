@@ -1,0 +1,28 @@
+@import "src/styles/_variables.scss";
+@import "src/styles/_mixins.scss";
+
+.navbar {
+  padding: 16px 0;
+  background-color: $primary-white;
+  border-bottom: 1px solid $primary-gray;
+
+  .logo-container {
+    @include flex-layout($justify-content: start);
+    @include horizontal-spacing();
+
+    @include breakpoint-common {
+      padding: 0 16px;
+    }
+
+    img {
+      height: 34px;
+      margin-right: 14px;
+    }
+
+    h1 {
+      font-size: 36px;
+      line-height: 42px;
+      color: $primary-accent;
+    }
+  }
+}

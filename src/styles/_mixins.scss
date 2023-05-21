@@ -1,0 +1,22 @@
+@mixin flex-layout(
+  $flex-direction: row,
+  $justify-content: center,
+  $align-items: center
+) {
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+@mixin breakpoint-common() {
+  @media (max-width: $breakpoint-common) {
+    @content;
+  }
+}
+
+@mixin horizontal-spacing {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+}
