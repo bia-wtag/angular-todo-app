@@ -1,0 +1,33 @@
+@import "src/styles/variables";
+@import "src/styles/mixins";
+
+.menu {
+  @include horizontal-spacing();
+
+  margin-top: 128px;
+  margin-bottom: 36px;
+
+  .add-todo-btn {
+    ::ng-deep {
+      button {
+        @include flex-layout();
+
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        background-color: $primary-accent;
+        cursor: pointer;
+
+        img {
+          width: 16px;
+          height: auto;
+          margin-right: 4px;
+        }
+
+        span {
+          color: $primary-white;
+        }
+      }
+    }
+  }
+}

@@ -19,4 +19,8 @@
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
+
+  @include breakpoint-common {
+    padding: 0 16px;
+  }
 }

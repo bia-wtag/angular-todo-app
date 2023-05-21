@@ -2,11 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NavbarModule } from '~/app/components/navbar/navbar.module';
+import { MenuModule } from './components/menu/menu.module';
 
 describe('AppComponent', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, NavbarModule],
+      imports: [RouterTestingModule, NavbarModule, MenuModule],
       declarations: [AppComponent],
     })
   );
