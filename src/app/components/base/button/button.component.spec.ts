@@ -1,64 +1,51 @@
 import { Component } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { ButtonComponent } from './button.component';
 
-// dummy component to wrap button and pass projected content
 @Component({
   selector: 'app-wrapper-component',
   template: `
-    <app-button (clickEvent)="changeClickedValue()">
-      <div class="projected-content">{{ createButtonLabel }}</div>
+    <app-button>
+      <div>{{ createButtonLabel }}</div>
     </app-button>
   `,
 })
 export class WrapperComponent {
   createButtonLabel = '';
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  changeClickedValue() {}
 }
 
 describe('ButtonComponent', () => {
-  let wrapper: WrapperComponent;
-  let fixture: ComponentFixture<WrapperComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       declarations: [WrapperComponent, ButtonComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(WrapperComponent);
-    wrapper = fixture.componentInstance;
-
-    fixture.detectChanges();
+    });
   });
 
   it('should display the projected content correctly', () => {
-    const projectedDiv: HTMLDivElement = fixture.debugElement.query(
-      By.css('.projected-content')
-    ).nativeElement;
-    expect(projectedDiv.textContent).toEqual('');
+    const fixture = TestBed.createComponent(WrapperComponent);
+    const wrapper = fixture.componentInstance;
+
+    const projectedElement = fixture.nativeElement.querySelector('button');
+    expect(projectedElement.textContent).toEqual('');
 
     wrapper.createButtonLabel = 'Create';
     fixture.detectChanges();
-    expect(projectedDiv.textContent).toEqual(wrapper.createButtonLabel);
+
+    expect(projectedElement.textContent).toEqual(wrapper.createButtonLabel);
   });
 
-  it('should emit to parent component on click', fakeAsync(() => {
-    spyOn(wrapper, 'changeClickedValue');
+  it('should emit on click', () => {
+    const fixture = TestBed.createComponent(ButtonComponent);
+    const button = fixture.componentInstance;
 
-    const button: HTMLButtonElement = fixture.debugElement.query(
-      By.css('button')
-    ).nativeElement;
-    button.click();
-    tick();
-    expect(wrapper.changeClickedValue).toHaveBeenCalled();
-  }));
+    spyOn(button.clickEvent, 'emit');
+
+    fixture.nativeElement
+      .querySelector('button')
+      .dispatchEvent(new Event('click'));
+
+    fixture.detectChanges();
+    expect(button.clickEvent.emit).toHaveBeenCalled();
+  });
 });

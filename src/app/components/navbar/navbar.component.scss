@@ -7,7 +7,7 @@
   border-bottom: 1px solid $primary-gray;
 
   .logo-container {
-    @include flex-layout($justify-content: start);
+    @include flex-layout($justify-content: flex-start);
     @include horizontal-spacing();
 
     img {
