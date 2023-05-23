@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +8,10 @@ import { Component } from '@angular/core';
 export class MenuComponent {
   createButtonLabel = 'Create';
 
+  @Input() addTodoFormVisible = false;
+  @Output() updateAddTodoFormVisibility = new EventEmitter<boolean>();
+
   showAddTodo() {
-    console.log('button clicked');
+    this.updateAddTodoFormVisibility.emit(!this.addTodoFormVisible);
   }
 }
