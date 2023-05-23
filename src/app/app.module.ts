@@ -6,10 +6,17 @@ import { AppComponent } from '~/app/app.component';
 
 import { NavbarModule } from '~/app/components/navbar/navbar.module';
 import { MenuModule } from '~/app/components/menu/menu.module';
+import { TodoListModule } from '~/app/components/todo-list/todo-list.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, NavbarModule, MenuModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NavbarModule,
+    MenuModule,
+    TodoListModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

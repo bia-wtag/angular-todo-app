@@ -1,13 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { AppComponent } from '~/app/app.component';
 import { NavbarModule } from '~/app/components/navbar/navbar.module';
-import { MenuModule } from './components/menu/menu.module';
+import { MenuModule } from '~/app/components/menu/menu.module';
+import { TodoListModule } from '~/app/components/todo-list/todo-list.module';
 
 describe('AppComponent', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, NavbarModule, MenuModule],
+      imports: [RouterTestingModule, NavbarModule, MenuModule, TodoListModule],
       declarations: [AppComponent],
     })
   );
