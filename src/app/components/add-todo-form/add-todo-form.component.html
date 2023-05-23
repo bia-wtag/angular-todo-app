@@ -1,0 +1,14 @@
+<form class="add-todo-form" (ngSubmit)="onSubmit()">
+  <textarea [formControl]="title" required appInputFocus></textarea>
+  <div *ngIf="showError()" class="input-error">
+    <p *ngIf="title.errors?.['required']">{{ titleErrorLabel }}</p>
+  </div>
+  <div class="button-group">
+    <app-button buttonType="submit">
+      {{ addTodoLabel }}
+    </app-button>
+    <app-button (clickEvent)="resetAddForm()">
+      <img src="assets/icons/icon-delete.png" alt="delete icon" />
+    </app-button>
+  </div>
+</form>

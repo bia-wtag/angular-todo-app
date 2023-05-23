@@ -1,0 +1,16 @@
+@import "src/styles/variables";
+@import "src/styles/mixins";
+
+.todo-list {
+  @include horizontal-spacing();
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 34px;
+
+  .todo-item {
+    padding: 16px;
+    border: 2px solid $secondary-gray;
+    border-radius: 4px;
+  }
+}
