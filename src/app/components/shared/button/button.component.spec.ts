@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ButtonComponent } from './button.component';
+import { SharedModule } from '../shared.module';
 
 @Component({
   selector: 'app-wrapper-component',
   template: `
-    <app-button testId="add-todo-btn">
+    <app-button testId="create-todo-btn">
       <div>{{ createButtonLabel }}</div>
     </app-button>
   `,
@@ -14,6 +15,12 @@ import { ButtonComponent } from './button.component';
 export class WrapperComponent {
   createButtonLabel = '';
 }
+
+@NgModule({
+  declarations: [WrapperComponent],
+  imports: [SharedModule],
+})
+export class WrapperModule {}
 
 describe('ButtonComponent Emit', () => {
   beforeEach(() => {
@@ -62,6 +69,6 @@ describe('ButtonComponent Integration with Wrapper', () => {
   });
 
   it('should add testId correctly', () => {
-    expect(button.dataset['testId']).toEqual('add-todo-btn');
+    expect(button.dataset['testId']).toEqual('create-todo-btn');
   });
 });
