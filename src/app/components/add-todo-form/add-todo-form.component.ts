@@ -20,14 +20,17 @@ export class AddTodoFormComponent {
 
   onSubmit() {
     this.isSubmitted = true;
-    if (!this.title.value || this.title.invalid) return;
+    if (!this.title.value?.trim() || this.title.invalid) {
+      this.title.setValue('');
+      return;
+    }
 
     this.todoService.addTodo(
-      new Todo(new Date(), null, this.title.value, false)
+      new Todo(new Date(), null, this.title.value.trim(), false)
     );
 
-    this.isSubmitted = false;
     this.title.setValue('');
+    this.isSubmitted = false;
   }
 
   showError() {
